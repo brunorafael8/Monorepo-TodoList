@@ -1,26 +1,23 @@
 import React, { useState } from 'react'
-import { TextInput, View, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import { TextInput, View, StyleSheet } from 'react-native'
 
 const useInputState = () => {
   const [value, setValue] = useState('')
 
   return {
     value,
-    onChangeText: text => {
-      setValue(text)
-    },
+    onChangeText: text => setValue(text),
     reset: () => setValue(''),
   }
 }
 
-const TodoForm = ({ newTodo }) => {
+const Form = props => {
   const { value, reset, onChangeText } = useInputState('')
 
-  console.log(value)
   const styles = StyleSheet.create({
     form: {
       width: 400,
-      height: 300,
+      height: 100,
       alignItems: 'flex-end',
       marginTop: 40,
     },
@@ -32,6 +29,8 @@ const TodoForm = ({ newTodo }) => {
       height: 40,
     },
   })
+
+  const { newTodo } = props
 
   return (
     <View style={styles.form}>
@@ -47,4 +46,5 @@ const TodoForm = ({ newTodo }) => {
     </View>
   )
 }
-export default TodoForm
+
+export default Form
